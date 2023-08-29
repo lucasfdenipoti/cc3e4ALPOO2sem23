@@ -4,6 +4,17 @@ import java.util.List;
 
 public class Validacao{
     public String mensagem;
+    public Integer id;
+    
+    public void validarId(String numId){
+        this.mensagem = "";
+        try{
+            this.id = Integer.valueOf(numId);
+        }
+        catch (NumberFormatException e){
+            this.mensagem = "Digite um ID válido";
+        }
+    }
     
     public void validarPessoa(List<String> listaDadosPessoa){
         this.mensagem = "";

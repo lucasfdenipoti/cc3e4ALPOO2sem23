@@ -22,4 +22,21 @@ public class Controle{
             this.mensagem = validacao.mensagem;
         }
     } 
+    
+    public Pessoa pesquisarPessoaPorId(String numId) throws Exception{
+        this.mensagem = "";
+        Pessoa pessoa = new Pessoa();
+        Validacao validacao = new Validacao();
+        validacao.validarId(numId);
+        if(validacao.mensagem.equals("")){
+            pessoa.idPessoa = validacao.id;
+            PessoaDAO pessoaDAO = new PessoaDAO();
+            pessoa = pessoaDAO.pesquisarPessoaPorId(pessoa);
+            this.mensagem = pessoaDAO.mensagem;
+        }
+        else{
+            this.mensagem = validacao.mensagem;
+        }
+        return pessoa;
+    }
 }

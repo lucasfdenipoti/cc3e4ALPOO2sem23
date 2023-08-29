@@ -29,15 +29,18 @@ public class PessoaDAO{
         }
     }
     
-    public Pessoa pesquisarPessoaPorId(Pessoa pessoa){
+    public Pessoa pesquisarPessoaPorId(Pessoa pessoa) throws Exception{
         this.mensagem = "";
         Conexao conexao = new Conexao();
         Connection con = conexao.conectar();
         try{
+            if(!conexao.mensagem.equals("")){
+                throw new Exception();
+            }
             String comSql = "select * from pessoas "
-                    + "where idPessoas = ?";            
+                    + "where idPessoa = ?";            
             PreparedStatement stmt = con.prepareStatement(comSql);
-            stmt.setString(1, pessoa.nome);
+            stmt.setInt(1, pessoa.idPessoa);
             stmt.executeQuery();
             ResultSet resultset = stmt.executeQuery();
             if(resultset.next()){
