@@ -29,14 +29,11 @@ public class PessoaDAO{
         }
     }
     
-    public Pessoa pesquisarPessoaPorId(Pessoa pessoa) throws Exception{
+    public Pessoa pesquisarPessoaPorId(Pessoa pessoa){
         this.mensagem = "";
         Conexao conexao = new Conexao();
         Connection con = conexao.conectar();
         try{
-            if(!conexao.mensagem.equals("")){
-                throw new Exception();
-            }
             String comSql = "select * from pessoas "
                     + "where idPessoa = ?";            
             PreparedStatement stmt = con.prepareStatement(comSql);

@@ -21,9 +21,9 @@ public class Controle{
         else{
             this.mensagem = validacao.mensagem;
         }
-    } 
+    }
     
-    public Pessoa pesquisarPessoaPorId(String numId) throws Exception{
+    public Pessoa pesquisarPessoaPorId(String numId){
         this.mensagem = "";
         Pessoa pessoa = new Pessoa();
         Validacao validacao = new Validacao();
