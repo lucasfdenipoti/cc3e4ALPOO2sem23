@@ -5,15 +5,16 @@ import java.util.List;
 
 public class Controle{
     public String mensagem;
+    
     public void cadastrarPessoa(List<String> ListaDadosPessoa){
         this.mensagem = "";
         Validacao validacao = new Validacao();
         validacao.validarPessoa(ListaDadosPessoa);
         if (validacao.mensagem.equals("")){
             Pessoa pessoa = new Pessoa();
-            pessoa.nome = ListaDadosPessoa.get(0);
-            pessoa.rg = ListaDadosPessoa.get(1);
-            pessoa.cpf = ListaDadosPessoa.get(2);
+            pessoa.nome = ListaDadosPessoa.get(1);
+            pessoa.rg = ListaDadosPessoa.get(2);
+            pessoa.cpf = ListaDadosPessoa.get(3);
             PessoaDAO pessoaDAO = new PessoaDAO();
             pessoaDAO.cadastrarPessoa(pessoa);
             this.mensagem = pessoaDAO.mensagem;
@@ -38,5 +39,24 @@ public class Controle{
             this.mensagem = validacao.mensagem;
         }
         return pessoa;
+    }
+    
+    public void editarPessoa(List<String> ListaDadosPessoa){
+        this.mensagem = "";
+        Validacao validacao = new Validacao();
+        validacao.validarPessoa(ListaDadosPessoa);
+        if (validacao.mensagem.equals("")){
+            Pessoa pessoa = new Pessoa();
+            pessoa.idPessoa = validacao.id;
+            pessoa.nome = ListaDadosPessoa.get(1);
+            pessoa.rg = ListaDadosPessoa.get(2);
+            pessoa.cpf = ListaDadosPessoa.get(3);
+            PessoaDAO pessoaDAO = new PessoaDAO();
+            pessoaDAO.editarPessoa(pessoa);
+            this.mensagem = pessoaDAO.mensagem;
+        }
+        else{
+            this.mensagem = validacao.mensagem;
+        }
     }
 }

@@ -112,6 +112,7 @@ public class frmCadastro extends javax.swing.JDialog
     {//GEN-HEADEREND:event_btnCadastrarActionPerformed
         Controle controle = new Controle();
         List<String> listadadosPessoa = new ArrayList<>();
+        listadadosPessoa.add("0");
         listadadosPessoa.add(txfNome.getText());
         listadadosPessoa.add(txfCPF.getText());
         listadadosPessoa.add(txfRG.getText());

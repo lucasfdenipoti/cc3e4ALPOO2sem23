@@ -6,6 +6,8 @@ package apresentacao;
 
 import Modelo.Controle;
 import Modelo.Pessoa;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -152,7 +154,14 @@ public class frmPEE extends javax.swing.JDialog
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnEditarActionPerformed
     {//GEN-HEADEREND:event_btnEditarActionPerformed
-        
+        Controle controle = new Controle();
+        List<String> listadadosPessoa = new ArrayList<>();
+        listadadosPessoa.add(txfId.getText());
+        listadadosPessoa.add(txfNome.getText());
+        listadadosPessoa.add(txfRG.getText());
+        listadadosPessoa.add(txfCPF.getText());
+        controle.editarPessoa(listadadosPessoa);
+        JOptionPane.showMessageDialog(null, controle.mensagem);
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnPesquisarActionPerformed

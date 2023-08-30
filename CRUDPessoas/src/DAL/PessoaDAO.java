@@ -57,4 +57,28 @@ public class PessoaDAO{
         }
         return pessoa;
     }
+    
+    public void editarPessoa(Pessoa pessoa){
+        this.mensagem = "";
+        Conexao conexao = new Conexao();
+        Connection con = conexao.conectar();
+        try{
+            String comSql = "update pessoas "
+                    + "set nome = ?, rg = ?, cpf = ? "
+                    + "where idPessoa = ?";
+            PreparedStatement stmt = con.prepareStatement(comSql);
+            stmt.setString(1, pessoa.nome);
+            stmt.setString(2, pessoa.rg);
+            stmt.setString(3, pessoa.cpf);
+            stmt.setInt(4, pessoa.idPessoa);
+            stmt.execute();
+            this.mensagem = "Edição efetuado com sucesso!";
+        } 
+        catch (SQLException e){
+            this.mensagem = "Erro de conexao BD";
+        }
+        finally{
+            conexao.desconectar();
+        }
+    }
 }
