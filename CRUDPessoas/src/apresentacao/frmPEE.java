@@ -156,6 +156,10 @@ public class frmPEE extends javax.swing.JDialog
             Controle controle = new Controle();
             controle.excluirPessoa(txfId.getText());
             JOptionPane.showMessageDialog(null, controle.mensagem);
+            txfId.setText("");
+            txfNome.setText("");
+            txfRG.setText("");
+            txfCPF.setText("");
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
