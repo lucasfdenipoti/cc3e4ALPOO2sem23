@@ -114,8 +114,8 @@ public class frmCadastro extends javax.swing.JDialog
         List<String> listadadosPessoa = new ArrayList<>();
         listadadosPessoa.add("0");
         listadadosPessoa.add(txfNome.getText());
-        listadadosPessoa.add(txfCPF.getText());
         listadadosPessoa.add(txfRG.getText());
+        listadadosPessoa.add(txfCPF.getText());
         controle.cadastrarPessoa(listadadosPessoa);
         JOptionPane.showMessageDialog(null, controle.mensagem);
     }//GEN-LAST:event_btnCadastrarActionPerformed
