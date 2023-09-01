@@ -149,7 +149,14 @@ public class frmPEE extends javax.swing.JDialog
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnExcluirActionPerformed
     {//GEN-HEADEREND:event_btnExcluirActionPerformed
-        
+        int resposta = JOptionPane.showConfirmDialog(null,
+                "Tem certeza?", "Exclusão",
+                JOptionPane.YES_NO_OPTION);
+        if (resposta == JOptionPane.YES_OPTION){
+            Controle controle = new Controle();
+            controle.excluirPessoa(txfId.getText());
+            JOptionPane.showMessageDialog(null, controle.mensagem);
+        }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnEditarActionPerformed

@@ -81,4 +81,24 @@ public class PessoaDAO{
             conexao.desconectar();
         }
     }
+    
+    public void excluirPessoa(Pessoa pessoa){
+        this.mensagem = "";
+        Conexao conexao = new Conexao();
+        Connection con = conexao.conectar();
+        try{
+            String comSql = "delete from pessoas "
+                    + "where idPessoa = ?";
+            PreparedStatement stmt = con.prepareStatement(comSql);
+            stmt.setInt(1, pessoa.idPessoa);
+            stmt.execute();
+            this.mensagem = "Exclusão efetuada com sucesso!";
+        } 
+        catch (SQLException e){
+            this.mensagem = "Erro de conexao BD";
+        }
+        finally{
+            conexao.desconectar();
+        }
+    }        
 }
