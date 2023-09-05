@@ -4,6 +4,11 @@
  */
 package apresentacao;
 
+import Modelo.Controle;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Lucas Denipoti
@@ -33,7 +38,7 @@ public class frmCadastro extends javax.swing.JDialog
         lblFabricante = new javax.swing.JLabel();
         lblModelo = new javax.swing.JLabel();
         txfModelo = new javax.swing.JTextField();
-        tfFabricante = new javax.swing.JTextField();
+        txfFabricante = new javax.swing.JTextField();
         lblAno = new javax.swing.JLabel();
         txfAno = new javax.swing.JTextField();
         lblCor = new javax.swing.JLabel();
@@ -43,6 +48,7 @@ public class frmCadastro extends javax.swing.JDialog
         btnCadastrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Cadastro");
 
         lblFabricante.setText("Frabricante");
 
@@ -71,7 +77,7 @@ public class frmCadastro extends javax.swing.JDialog
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblFabricante, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfFabricante, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txfFabricante, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblAno, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txfAno, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblValor, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -96,7 +102,7 @@ public class frmCadastro extends javax.swing.JDialog
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txfModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfFabricante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txfFabricante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblAno)
@@ -115,11 +121,21 @@ public class frmCadastro extends javax.swing.JDialog
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCadastrarActionPerformed
     {//GEN-HEADEREND:event_btnCadastrarActionPerformed
-        
+        Controle controle = new Controle();
+        List<String> listaDadosCarro = new ArrayList<>();
+        listaDadosCarro.add("0");
+        listaDadosCarro.add(txfFabricante.getText());
+        listaDadosCarro.add(txfModelo.getText());
+        listaDadosCarro.add(txfAno.getText());
+        listaDadosCarro.add(txfCor.getText());
+        //listadadosCarro.add(txfValor.getText());
+        controle.cadastrarCarro(listaDadosCarro);
+        JOptionPane.showMessageDialog(null, controle.mensagem);
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     /**
@@ -187,9 +203,9 @@ public class frmCadastro extends javax.swing.JDialog
     private javax.swing.JLabel lblFabricante;
     private javax.swing.JLabel lblModelo;
     private javax.swing.JLabel lblValor;
-    private javax.swing.JTextField tfFabricante;
     private javax.swing.JTextField txfAno;
     private javax.swing.JTextField txfCor;
+    private javax.swing.JTextField txfFabricante;
     private javax.swing.JTextField txfModelo;
     private javax.swing.JTextField txfValor;
     // End of variables declaration//GEN-END:variables
