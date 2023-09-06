@@ -16,7 +16,7 @@ public class Controle{
             carro.Modelo = ListaDadosCarro.get(2);
             carro.Ano = ListaDadosCarro.get(3);
             carro.Cor = ListaDadosCarro.get(4);
-            //carro.Valor = ListaDadosCarro.get(5);
+            carro.Valor = validacao.valor;
             CarroDAO carroDAO = new CarroDAO();
             carroDAO.cadastrarCarro(carro);
             this.mensagem = carroDAO.mensagem;
@@ -54,7 +54,7 @@ public class Controle{
             carro.Modelo = ListaDadosCarro.get(2);
             carro.Ano = ListaDadosCarro.get(3);
             carro.Cor = ListaDadosCarro.get(4);
-            //carro.Valor = ListaDadosCarro.get(5);
+            carro.Valor = validacao.valor;
             CarroDAO carroDAO = new CarroDAO();
             carroDAO.editarCarro(carro);
             this.mensagem = carroDAO.mensagem;

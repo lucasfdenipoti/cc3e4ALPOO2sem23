@@ -133,7 +133,7 @@ public class frmCadastro extends javax.swing.JDialog
         listaDadosCarro.add(txfModelo.getText());
         listaDadosCarro.add(txfAno.getText());
         listaDadosCarro.add(txfCor.getText());
-        //listadadosCarro.add(txfValor.getText());
+        listaDadosCarro.add(txfValor.getText());
         controle.cadastrarCarro(listaDadosCarro);
         JOptionPane.showMessageDialog(null, controle.mensagem);
     }//GEN-LAST:event_btnCadastrarActionPerformed

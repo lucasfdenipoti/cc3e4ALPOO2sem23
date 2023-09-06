@@ -12,14 +12,14 @@ public class CarroDAO{
         Connection con = conexao.conectar();
         try{
             String comSql = "insert into carros "
-                    + "(fabricante, modelo, ano, cor) "
-                    + "values(?, ?, ?, ?)";
+                    + "(fabricante, modelo, ano, cor, valor) "
+                    + "values(?, ?, ?, ?, ?)";
             PreparedStatement stmt = con.prepareStatement(comSql);
             stmt.setString(1, carro.Fabricante);
             stmt.setString(2, carro.Modelo);
             stmt.setString(3, carro.Ano);
             stmt.setString(4, carro.Cor);
-            //stmt.setDouble(5, carro.Valor);
+            stmt.setDouble(5, carro.Valor);
             stmt.execute();
             this.mensagem = "Cadastro efetuado com sucesso!";
         } 
@@ -47,7 +47,7 @@ public class CarroDAO{
                 carro.Modelo = resultset.getString("modelo");
                 carro.Ano = resultset.getString("ano");
                 carro.Cor = resultset.getString("cor");
-                //carro.Valor = resultset.getDouble("valor");
+                carro.Valor = resultset.getDouble("valor");
             }
             else{
                 this.mensagem = "Não existe registro com este ID";
@@ -67,15 +67,16 @@ public class CarroDAO{
         Conexao conexao = new Conexao();
         Connection con = conexao.conectar();
         try{
-            String comSql = "update carro "
-                    + "set fabricante = ?, modelo = ?, ano = ?, cor = ?"
+            String comSql = "update carros "
+                    + "set fabricante = ?, modelo = ?, ano = ?, cor = ?, valor = ? "
                     + "where idCarro = ?";
             PreparedStatement stmt = con.prepareStatement(comSql);
-            stmt.setString(1,carro.Fabricante );
+            stmt.setString(1,carro.Fabricante);
             stmt.setString(2, carro.Modelo);
             stmt.setString(3, carro.Ano);
             stmt.setString(4, carro.Cor);
-            //stmt.setDouble(5, carro.Valor);
+            stmt.setDouble(5, carro.Valor);
+            stmt.setInt(6, carro.idCarro);
             stmt.execute();
             this.mensagem = "Edição efetuado com sucesso!";
         } 

@@ -4,6 +4,13 @@
  */
 package apresentacao;
 
+import Modelo.Carro;
+import Modelo.Controle;
+import Modelo.Validacao;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Lucas Denipoti
@@ -30,7 +37,7 @@ public class frmPEE extends javax.swing.JDialog
     private void initComponents()
     {
 
-        btnCadastrar = new javax.swing.JButton();
+        btnEditar = new javax.swing.JButton();
         txfValor = new javax.swing.JTextField();
         txfAno = new javax.swing.JTextField();
         lblValor = new javax.swing.JLabel();
@@ -38,7 +45,7 @@ public class frmPEE extends javax.swing.JDialog
         lblCor = new javax.swing.JLabel();
         lblAno = new javax.swing.JLabel();
         lblFabricante = new javax.swing.JLabel();
-        tfFabricante = new javax.swing.JTextField();
+        txfFabricante = new javax.swing.JTextField();
         txfModelo = new javax.swing.JTextField();
         lblModelo = new javax.swing.JLabel();
         lblId = new javax.swing.JLabel();
@@ -49,12 +56,12 @@ public class frmPEE extends javax.swing.JDialog
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Pesquisar / Editar / Excluir");
 
-        btnCadastrar.setText("Cadastrar");
-        btnCadastrar.addActionListener(new java.awt.event.ActionListener()
+        btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                btnCadastrarActionPerformed(evt);
+                btnEditarActionPerformed(evt);
             }
         });
 
@@ -100,7 +107,7 @@ public class frmPEE extends javax.swing.JDialog
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txfId))
                     .addComponent(lblFabricante, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
-                    .addComponent(tfFabricante, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                    .addComponent(txfFabricante, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
                     .addComponent(lblAno, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
                     .addComponent(txfAno, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
                     .addComponent(lblValor, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
@@ -109,7 +116,7 @@ public class frmPEE extends javax.swing.JDialog
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblCor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txfCor)
                     .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblModelo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -131,7 +138,7 @@ public class frmPEE extends javax.swing.JDialog
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txfModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfFabricante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txfFabricante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblAno)
@@ -146,7 +153,7 @@ public class frmPEE extends javax.swing.JDialog
                 .addComponent(txfValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnCadastrar)
+                    .addComponent(btnEditar)
                     .addComponent(btnExcluir))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
@@ -155,19 +162,53 @@ public class frmPEE extends javax.swing.JDialog
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCadastrarActionPerformed
-    {//GEN-HEADEREND:event_btnCadastrarActionPerformed
-
-    }//GEN-LAST:event_btnCadastrarActionPerformed
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnEditarActionPerformed
+    {//GEN-HEADEREND:event_btnEditarActionPerformed
+        Controle controle = new Controle();
+        List<String> listaDadosCarro = new ArrayList<>();
+        listaDadosCarro.add(txfId.getText());
+        listaDadosCarro.add(txfFabricante.getText());
+        listaDadosCarro.add(txfModelo.getText());
+        listaDadosCarro.add(txfAno.getText());
+        listaDadosCarro.add(txfCor.getText());
+        listaDadosCarro.add(txfValor.getText());
+        controle.editarCarro(listaDadosCarro);
+        JOptionPane.showMessageDialog(null, controle.mensagem);
+    }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnPesquisarActionPerformed
     {//GEN-HEADEREND:event_btnPesquisarActionPerformed
-        
+        Controle controle = new Controle();
+        Validacao validacao = new Validacao();
+        Carro carro = controle.pesquisarCarroPorId(txfId.getText());
+        if(controle.mensagem.equals("")){
+            txfFabricante.setText(carro.Fabricante);
+            txfModelo.setText(carro.Modelo);
+            txfAno.setText(carro.Ano);
+            txfCor.setText(carro.Cor);
+            txfValor.setText(carro.Valor.toString());
+        }
+        else{
+            JOptionPane.showMessageDialog(null, controle.mensagem);
+        }
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnExcluirActionPerformed
     {//GEN-HEADEREND:event_btnExcluirActionPerformed
-        
+        int resposta = JOptionPane.showConfirmDialog(null,
+                "Tem certeza?", "Exclusão",
+                JOptionPane.YES_NO_OPTION);
+        if (resposta == JOptionPane.YES_OPTION){
+            Controle controle = new Controle();
+            controle.excluirCarro(txfId.getText());
+            JOptionPane.showMessageDialog(null, controle.mensagem);
+            txfId.setText("");
+            txfFabricante.setText("");
+            txfModelo.setText("");
+            txfAno.setText("");
+            txfCor.setText("");
+            txfValor.setText("");
+        }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     /**
@@ -229,7 +270,7 @@ public class frmPEE extends javax.swing.JDialog
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCadastrar;
+    private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JLabel lblAno;
@@ -238,9 +279,9 @@ public class frmPEE extends javax.swing.JDialog
     private javax.swing.JLabel lblId;
     private javax.swing.JLabel lblModelo;
     private javax.swing.JLabel lblValor;
-    private javax.swing.JTextField tfFabricante;
     private javax.swing.JTextField txfAno;
     private javax.swing.JTextField txfCor;
+    private javax.swing.JTextField txfFabricante;
     private javax.swing.JTextField txfId;
     private javax.swing.JTextField txfModelo;
     private javax.swing.JTextField txfValor;

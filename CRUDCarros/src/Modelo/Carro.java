@@ -1,7 +1,6 @@
 package Modelo;
 
-public class Carro
-{
+public class Carro{
     public int idCarro;
     public String Fabricante;
     public String Modelo;

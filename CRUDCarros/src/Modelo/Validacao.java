@@ -5,6 +5,17 @@ import java.util.List;
 public class Validacao{
     public String mensagem;
     public Integer id;
+    public Double valor;
+    
+    public void validarValor(String numValor){
+        this.mensagem = "";
+        try{
+            this.valor = Double.valueOf(numValor);
+        }
+        catch (NumberFormatException e){
+            this.mensagem = "Digite um valor válido";
+        }
+    }
     
     public void validarId(String numId){
         this.mensagem = "";
@@ -27,7 +38,6 @@ public class Validacao{
             this.mensagem += "Ano deve ter menos que 4 Digitos\n";
         if (listaDadosCarro.get(4).length() > 30)
             this.mensagem += "Cor deve ter menos que 30 caracteres\n";
-        /*if (listaDadosCarro.get(5).length() < 0)
-            this.mensagem += "Valor deve ser maior que 0\n";*/
+        validarValor(listaDadosCarro.get(5));
     }
 }
