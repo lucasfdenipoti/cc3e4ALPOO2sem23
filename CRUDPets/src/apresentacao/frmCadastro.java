@@ -144,6 +144,11 @@ public class frmCadastro extends javax.swing.JDialog
         ListaDadosPet.add(txfServico.getText());
         controle.cadastrarPet(ListaDadosPet);
         JOptionPane.showMessageDialog(null, controle.mensagem);
+        txfNome.setText("");
+        txfEspecie.setText("");
+        txfRaca.setText("");
+        txfIdade.setText("");
+        txfServico.setText("");
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     /**
