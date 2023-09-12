@@ -42,4 +42,25 @@ public class Controle{
         }
         return pet;
     }
+    
+    public void editarPet(List<String> ListaDadosPet){
+        this.mensagem = "";
+        Validacao validacao = new Validacao();
+        validacao.validarPet(ListaDadosPet);
+        if (validacao.mensagem.equals("")){
+            Pet pet = new Pet();
+            pet.idPet = validacao.id;
+            pet.Nome = ListaDadosPet.get(1);
+            pet.Especie = ListaDadosPet.get(2);
+            pet.Raca = ListaDadosPet.get(3);
+            pet.Idade = ListaDadosPet.get(4);
+            pet.Servico = ListaDadosPet.get(5);
+            PetDAO petDAO = new PetDAO();
+            petDAO.editarPet(pet);
+            this.mensagem = petDAO.mensagem;
+        }
+        else{
+            this.mensagem = validacao.mensagem;
+        }
+    }
 }

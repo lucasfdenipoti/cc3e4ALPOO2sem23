@@ -4,6 +4,8 @@
  */
 package apresentacao;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import modelo.Controle;
 import modelo.Pet;
@@ -190,7 +192,22 @@ public class frmPEE extends javax.swing.JDialog
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnEditarActionPerformed
     {//GEN-HEADEREND:event_btnEditarActionPerformed
-        
+        Controle controle = new Controle();
+        List<String> ListaDadosPet = new ArrayList<>();
+        ListaDadosPet.add(txfID.getText());
+        ListaDadosPet.add(txfNome.getText());
+        ListaDadosPet.add(txfEspecie.getText());
+        ListaDadosPet.add(txfRaca.getText());
+        ListaDadosPet.add(txfIdade.getText());
+        ListaDadosPet.add(txfServico.getText());
+        controle.editarPet(ListaDadosPet);
+        JOptionPane.showMessageDialog(null, controle.mensagem);
+        txfID.setText("");
+        txfNome.setText("");
+        txfEspecie.setText("");
+        txfRaca.setText("");
+        txfIdade.setText("");
+        txfServico.setText("");
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnExcluirActionPerformed

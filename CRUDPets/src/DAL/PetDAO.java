@@ -61,4 +61,30 @@ public class PetDAO{
         }
         return pet;
     }
+    
+    public void editarPet(Pet pet){
+        this.mensagem = "";
+        Conexao conexao = new Conexao();
+        Connection con = conexao.conectar();
+        try{
+            String comSql = "update pets "
+                    + "set nome = ?, especie = ?, raca = ?, idade = ?, servico = ? "
+                    + "where idpet = ?";
+            PreparedStatement stmt = con.prepareStatement(comSql);
+            stmt.setString(1, pet.Nome);
+            stmt.setString(2, pet.Especie);
+            stmt.setString(3, pet.Raca);
+            stmt.setString(4, pet.Idade);
+            stmt.setString(5, pet.Servico);
+            stmt.setInt(6, pet.idPet);
+            stmt.execute();
+            this.mensagem = "Edição efetuada com sucesso!";
+        } 
+        catch (SQLException e){
+            this.mensagem = "Erro de conexao BD";
+        }
+        finally{
+            conexao.desconectar();
+        }
+    }
 }
