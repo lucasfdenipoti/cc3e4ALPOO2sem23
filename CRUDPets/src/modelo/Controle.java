@@ -63,4 +63,20 @@ public class Controle{
             this.mensagem = validacao.mensagem;
         }
     }
+    
+    public void excluirPet(String numId){;
+        this.mensagem = "";
+        Validacao validacao = new Validacao();
+        validacao.validarId(numId);
+        if (validacao.mensagem.equals("")){
+            Pet pet = new Pet();
+            pet.idPet = validacao.id;
+            PetDAO petDAO = new PetDAO();
+            petDAO.excluirPet(pet);
+            this.mensagem = petDAO.mensagem;
+        }
+        else{
+            this.mensagem = validacao.mensagem;
+        }
+    }
 }

@@ -87,4 +87,24 @@ public class PetDAO{
             conexao.desconectar();
         }
     }
+    
+    public void excluirPet(Pet pet){
+        this.mensagem = "";
+        Conexao conexao = new Conexao();
+        Connection con = conexao.conectar();
+        try{
+            String comSql = "delete from pets "
+                    + "where idpet = ?";
+            PreparedStatement stmt = con.prepareStatement(comSql);
+            stmt.setInt(1, pet.idPet);
+            stmt.execute();
+            this.mensagem = "Exclusão efetuada com sucesso!";
+        } 
+        catch (SQLException e){
+            this.mensagem = "Erro de conexao BD";
+        }
+        finally{
+            conexao.desconectar();
+        }
+    }
 }
