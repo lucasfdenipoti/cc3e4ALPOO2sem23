@@ -4,6 +4,11 @@
  */
 package apresentacao;
 
+import javax.swing.JOptionPane;
+import modelo.Controle;
+import modelo.Pet;
+import modelo.Validacao;
+
 /**
  *
  * @author Lucas Denipoti
@@ -168,7 +173,19 @@ public class frmPEE extends javax.swing.JDialog
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnPesquisarActionPerformed
     {//GEN-HEADEREND:event_btnPesquisarActionPerformed
-        
+        Controle controle = new Controle();
+        Validacao validacao = new Validacao();
+        Pet pet = controle.pesquisarPetPorId(txfID.getText());
+        if(controle.mensagem.equals("")){
+            txfNome.setText(pet.Nome);
+            txfEspecie.setText(pet.Especie);
+            txfRaca.setText(pet.Raca);
+            txfIdade.setText(pet.Idade);
+            txfServico.setText(pet.Servico);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, controle.mensagem);
+        }
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnEditarActionPerformed

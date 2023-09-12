@@ -15,7 +15,7 @@ public class Controle{
             pet.Nome = ListaDadosPet.get(1);
             pet.Especie = ListaDadosPet.get(2);
             pet.Raca = ListaDadosPet.get(3);
-            pet.Idade = validacao.idade;
+            pet.Idade = ListaDadosPet.get(4);
             pet.Servico = ListaDadosPet.get(5);
             PetDAO petDAO = new PetDAO();
             petDAO.cadastrarPet(pet);
@@ -24,5 +24,22 @@ public class Controle{
         else{
             this.mensagem = validacao.mensagem;
         }
+    }
+    
+    public Pet pesquisarPetPorId(String numId){
+        this.mensagem = "";
+        Pet pet = new Pet();
+        Validacao validacao = new Validacao();
+        validacao.validarId(numId);
+        if(validacao.mensagem.equals("")){
+            pet.idPet = validacao.id;
+            PetDAO petDAO = new PetDAO();
+            pet = petDAO.pesquisarPetPorId(pet);
+            this.mensagem = petDAO.mensagem;
+        }
+        else{
+            this.mensagem = validacao.mensagem;
+        }
+        return pet;
     }
 }

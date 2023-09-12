@@ -5,17 +5,6 @@ import java.util.List;
 public class Validacao{
     public String mensagem;
     public int id;
-    public int idade;
-    
-    public void validarIdade(String numIdade){
-        this.mensagem = "";
-        try{
-            this.idade = Integer.parseInt(numIdade);
-       }
-        catch (NumberFormatException e){
-            this.mensagem = "Digite uma idade válido";
-        }
-    }
     
     public void validarId(String numId){
         this.mensagem = "";
@@ -36,8 +25,9 @@ public class Validacao{
             this.mensagem = "Espécie deve conter menos de 45 caracteres";
         if(listaDadosPet.get(3).length() > 45)
             this.mensagem = "Raça deve conter menos de 45 caracteres";
-        validarIdade(listaDadosPet.get(4));
-            if(listaDadosPet.get(5).length() > 45)
-        this.mensagem = "Serviço deve conter menos de 45 caracteres";
+        if(listaDadosPet.get(4).length() > 25)
+            this.mensagem = "Idade deve conter menos de 25 digitos";
+        if(listaDadosPet.get(5).length() > 45)
+            this.mensagem = "Serviço deve conter menos de 45 caracteres";
     }
 }

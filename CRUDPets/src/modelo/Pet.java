@@ -6,5 +6,5 @@ public class Pet{
     public String Especie;
     public String Raca;
     public String Servico;
-    public int Idade;
+    public String Idade;
 }

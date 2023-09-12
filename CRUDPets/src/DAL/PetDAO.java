@@ -18,7 +18,7 @@ public class PetDAO{
             stmt.setString(1, pet.Nome);
             stmt.setString(2, pet.Especie);
             stmt.setString(3, pet.Raca);
-            stmt.setInt(4, pet.Idade);
+            stmt.setString(4, pet.Idade);
             stmt.setString(5, pet.Servico);
             stmt.execute();
             this.mensagem = "Cadastro efetuado com sucesso!";
@@ -29,5 +29,36 @@ public class PetDAO{
         finally{
             conexao.desconectar();
         }
+    }
+    
+    public Pet pesquisarPetPorId(Pet pet){
+        this.mensagem = "";
+        Conexao conexao = new Conexao();
+        Connection con = conexao.conectar();
+        try{
+            String comSql = "select * from pets "
+                    + "where idpet = ?";
+            PreparedStatement stmt = con.prepareStatement(comSql);
+            stmt.setInt(1, pet.idPet);
+            stmt.executeQuery();
+            ResultSet resultset = stmt.executeQuery();
+            if(resultset.next()){
+                pet.Nome = resultset.getString("nome");
+                pet.Especie = resultset.getString("especie");
+                pet.Raca = resultset.getString("raca");
+                pet.Idade = resultset.getString("idade");
+                pet.Servico = resultset.getString("servico");
+            }
+            else{
+                this.mensagem = "Não existe registro com esse ID";
+            }
+        } 
+        catch (SQLException e){
+            this.mensagem = "Erro de conexao BD";
+        }
+        finally{
+            conexao.desconectar();
+        }
+        return pet;
     }
 }
