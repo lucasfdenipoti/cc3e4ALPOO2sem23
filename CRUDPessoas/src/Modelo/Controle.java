@@ -1,6 +1,7 @@
 package Modelo;
 
 import DAL.PessoaDAO;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Controle{
@@ -74,5 +75,23 @@ public class Controle{
         else{
             this.mensagem = validacao.mensagem;
         }
+    }
+
+    public List<Pessoa> pesquisarPessoaPorNome(String nome){
+        this.mensagem = "";
+        Pessoa pessoa = new Pessoa();
+        List<Pessoa> listaPessoas = new ArrayList<>();
+        Validacao validacao = new Validacao();
+        validacao.validarNome(nome);
+        if(validacao.mensagem.equals("")){
+            pessoa.nome = nome;
+            PessoaDAO pessoaDAO = new PessoaDAO();
+            listaPessoas = pessoaDAO.pesquisarPessoaPorNome(pessoa);
+            this.mensagem = pessoaDAO.mensagem;
+        }
+        else{
+            this.mensagem = validacao.mensagem;
+        }
+        return listaPessoas;
     }
 }

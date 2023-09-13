@@ -2,6 +2,8 @@ package DAL;
 
 import java.sql.*;
 import Modelo.Pessoa;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PessoaDAO{
     public String mensagem;
@@ -100,5 +102,35 @@ public class PessoaDAO{
         finally{
             conexao.desconectar();
         }
-    }        
+    }  
+    
+    public List<Pessoa> pesquisarPessoaPorNome(Pessoa pessoa){
+        this.mensagem = "";
+        Conexao conexao = new Conexao();
+        Connection con = conexao.conectar();
+        List<Pessoa> listaPessoas = new ArrayList<>();
+        try{
+            String comSql = "select * from pessoas "
+                    + "where nome like ?% ";            
+            PreparedStatement stmt = con.prepareStatement(comSql);
+            stmt.setString(1, pessoa.nome);
+            stmt.executeQuery();
+            ResultSet resultset = stmt.executeQuery();
+            while(resultset.next()){
+                Pessoa pessoaResultado = new Pessoa();
+                pessoaResultado.idPessoa = resultset.getInt("idpessoa");
+                pessoaResultado.nome = resultset.getString("nome");
+                pessoaResultado.rg = resultset.getString("rg");
+                pessoaResultado.cpf = resultset.getString("cpf");
+                listaPessoas.add(pessoaResultado);
+            }
+        }
+        catch (SQLException e){
+            this.mensagem = "Erro de conexao BD";
+        }
+        finally{
+            conexao.desconectar();
+        }
+        return listaPessoas;
+    }
 }
