@@ -64,7 +64,7 @@ public class Controle{
         }
     }
     
-    public void excluirPet(String numId){;
+    public void excluirPet(String numId){
         this.mensagem = "";
         Validacao validacao = new Validacao();
         validacao.validarId(numId);
