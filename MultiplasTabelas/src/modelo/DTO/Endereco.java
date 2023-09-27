@@ -1,4 +1,4 @@
-package modelo;
+package modelo.DTO;
 
 import java.io.Serializable;
 import javax.persistence.Basic;

@@ -3,8 +3,8 @@ package multiplastabelas;
 import DAL.PessoaDAO;
 import java.util.ArrayList;
 import java.util.List;
-import modelo.Endereco;
-import modelo.Pessoa;
+import modelo.DTO.Endereco;
+import modelo.DTO.Pessoa;
 
 public class MultiplasTabelas
 {

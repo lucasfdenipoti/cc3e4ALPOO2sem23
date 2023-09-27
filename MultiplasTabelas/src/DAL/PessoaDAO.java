@@ -1,8 +1,8 @@
 package DAL;
 
 import java.sql.*;
-import modelo.Endereco;
-import modelo.Pessoa;
+import modelo.DTO.Endereco;
+import modelo.DTO.Pessoa;
 
 public class PessoaDAO {
     public String mensagem;
