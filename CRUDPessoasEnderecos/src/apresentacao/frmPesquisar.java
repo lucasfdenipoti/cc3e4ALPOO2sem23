@@ -4,6 +4,9 @@
  */
 package apresentacao;
 
+import modelo.Controle;
+import modelo.DTO.Pessoa;
+
 /**
  *
  * @author Lucas Denipoti
@@ -232,7 +235,7 @@ public class frmPesquisar extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        
+        Controle controle = new Controle();
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     /**

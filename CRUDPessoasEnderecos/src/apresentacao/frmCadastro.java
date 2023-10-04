@@ -235,28 +235,19 @@ public class frmCadastro extends javax.swing.JDialog {
         ListaDadosPessoa.add(txfRg.getText());
         ListaDadosPessoa.add(txfCPF.getText());
         
-        List<String> endRes = new ArrayList<>();
-        List<String> endCos = new ArrayList<>();
-        
-        endRes.add("0");
-        endRes.add(txfLogradouroR.getText());
-        endRes.add(txfNumeroR.getText());
-        endRes.add(txfBairroR.getText());
-        endRes.add(txfCidadeR.getText());
+        ListaDadosPessoa.add(txfLogradouroR.getText());
+        ListaDadosPessoa.add(txfNumeroR.getText());
+        ListaDadosPessoa.add(txfBairroR.getText());
+        ListaDadosPessoa.add(txfCidadeR.getText());
         
         
-        endCos.add("0");
-        endCos.add(txfLogradouroC.getText());
-        endCos.add(txfNumeroC.getText());
-        endCos.add(txfBairroC.getText());
-        endCos.add(txfCidadeC.getText());
-        
-        List<List<String>> ListaDadosEnderecos = new ArrayList<>();
-        ListaDadosEnderecos.add(endCos);
-        ListaDadosEnderecos.add(endRes);
+        ListaDadosPessoa.add(txfLogradouroC.getText());
+        ListaDadosPessoa.add(txfNumeroC.getText());
+        ListaDadosPessoa.add(txfBairroC.getText());
+        ListaDadosPessoa.add(txfCidadeC.getText());
         
         Controle controle = new Controle();
-        controle.cadastrar(ListaDadosPessoa, ListaDadosEnderecos);
+        controle.cadastrar(ListaDadosPessoa);
         JOptionPane.showMessageDialog(null, controle.mensagem);
     }//GEN-LAST:event_btnCadastrarActionPerformed
 

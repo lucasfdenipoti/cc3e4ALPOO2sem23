@@ -9,26 +9,36 @@ import modelo.DTO.Pessoa;
 public class Controle {
     public String mensagem;
     
-    public void cadastrar(List<String> ListaDadosPessoa, List<List<String>> ListaDadosEndereco){
+    public void cadastrar(List<String> ListaDadosPessoa){
         this.mensagem = "";
         Validacao validacao = new Validacao();
         validacao.validarPessoa(ListaDadosPessoa);
         validacao.validarEndereco(ListaDadosPessoa);
         if (validacao.mensagem.equals("")){
             Pessoa pessoa = new Pessoa();
+            Endereco endRes = new Endereco();
+            Endereco endCom = new Endereco();
+            List<Endereco> listaDadosEnderecos = new ArrayList<>();
+            
             pessoa.setNome(ListaDadosPessoa.get(1));
             pessoa.setRg(ListaDadosPessoa.get(2));
             pessoa.setCpf(ListaDadosPessoa.get(3));
-            List<Endereco> ListaEnd = new ArrayList<>();
-            for(List<String> e : ListaDadosEndereco){
-                Endereco endereco = new Endereco();
-                endereco.setLogradouro(e.get(1));
-                endereco.setNumero(e.get(2));
-                endereco.setBairro(e.get(3));
-                endereco.setCidade(e.get(4));
-                ListaEnd.add(endereco);
-            }
-            pessoa.setEnderecoList(ListaEnd);
+            
+            endRes.setLogradouro(ListaDadosPessoa.get(4));
+            endRes.setNumero(ListaDadosPessoa.get(5));
+            endRes.setBairro(ListaDadosPessoa.get(6));
+            endRes.setCidade(ListaDadosPessoa.get(7));
+            
+            endCom.setLogradouro(ListaDadosPessoa.get(8));
+            endCom.setNumero(ListaDadosPessoa.get(9));
+            endCom.setBairro(ListaDadosPessoa.get(10));
+            endCom.setCidade(ListaDadosPessoa.get(11));
+            
+            listaDadosEnderecos.add(endRes);
+            listaDadosEnderecos.add(endCom);
+            
+            pessoa.setEnderecoList(listaDadosEnderecos);
+            
             PessoaEndDAO pessoaendDAO = new PessoaEndDAO();
             pessoaendDAO.Cadastrar(pessoa);
             this.mensagem = pessoaendDAO.mensagem;
@@ -37,4 +47,5 @@ public class Controle {
             this.mensagem = validacao.mensagem;
         }
     }
+    
 }

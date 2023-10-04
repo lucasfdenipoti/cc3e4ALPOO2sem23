@@ -27,13 +27,13 @@ public class Validacao {
     }
     
     public void validarEndereco(List<String> listaDadosEnd){
-        if (listaDadosEnd.get(1).length() > 10)
+        if (listaDadosEnd.get(1).length() > 45)
             this.mensagem += "Logradouro deve ter menos que 45 caracteres\n";
-        if (listaDadosEnd.get(2).length() > 10)
+        if (listaDadosEnd.get(2).length() > 45)
             this.mensagem += "Numero deve ter menos que 45 caracteres\n";
-        if (listaDadosEnd.get(3).length() > 13)
+        if (listaDadosEnd.get(3).length() > 45)
             this.mensagem += "Bairro deve ter menos que 45 caracteres\n";
-        if (listaDadosEnd.get(4).length() > 13)
+        if (listaDadosEnd.get(4).length() > 45)
             this.mensagem += "Cidade deve ter menos que 45 caracteres\n";
     }
 }
