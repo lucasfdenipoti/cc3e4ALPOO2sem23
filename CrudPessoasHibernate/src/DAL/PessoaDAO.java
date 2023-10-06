@@ -41,7 +41,7 @@ public class PessoaDAO
                     for (Endereco e : pessoa.getEnderecoList())
                     {
                         comSql = "insert into enderecos "
-                                + "(logradouro, numero, bairro, cidade, fk_idPessoas) "
+                                + "(Logradouro, Numero, Bairro, Cidade, fk_idPessoa) "
                                 + "values (?, ?, ?, ?, ?)";
                         stmt = con.prepareStatement(comSql);
                         stmt.setString(1, e.getLogradouro());
@@ -79,7 +79,7 @@ public class PessoaDAO
         {
             String comSql = "select * from pessoas "
                     + "join enderecos "
-                    + "on enderecos.fk_idPessoas = pessoas.idPessoa "
+                    + "on enderecos.fk_idPessoa = pessoas.idPessoa "
                     + "where idPessoa = ?";
             PreparedStatement stmt = con.prepareStatement(comSql);
             stmt.setInt(1, pessoa.getIdpessoa());
@@ -92,16 +92,16 @@ public class PessoaDAO
                 Endereco endRes = new Endereco();
                 Endereco endCom = new Endereco();
                 
-                endRes.setLogradouro(resultset.getString("logradouro"));
-                endRes.setNumero(resultset.getString("numero"));
-                endRes.setBairro(resultset.getString("bairro"));
-                endRes.setCidade(resultset.getString("cidade"));
+                endRes.setLogradouro(resultset.getString("Logradouro"));
+                endRes.setNumero(resultset.getString("Numero"));
+                endRes.setBairro(resultset.getString("Bairro"));
+                endRes.setCidade(resultset.getString("Cidade"));
                 if (resultset.next())
                 {
-                    endCom.setLogradouro(resultset.getString("logradouro"));
-                    endCom.setNumero(resultset.getString("numero"));
-                    endCom.setBairro(resultset.getString("bairro"));
-                    endCom.setCidade(resultset.getString("cidade"));
+                    endCom.setLogradouro(resultset.getString("Logradouro"));
+                    endCom.setNumero(resultset.getString("Numero"));
+                    endCom.setBairro(resultset.getString("Bairro"));
+                    endCom.setCidade(resultset.getString("Cidade"));
                 }
                 List<Endereco> listaEnderecos = new ArrayList<>();
                 if (endRes != null)
