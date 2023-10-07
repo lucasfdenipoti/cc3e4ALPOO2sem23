@@ -5,16 +5,33 @@ import java.sql.*;
 import modelo.Pessoa;
 import java.util.ArrayList;
 import java.util.List;
+import org.hibernate.Session;
 
 public class PessoaDAO
 {
 
     public String mensagem;
-
+    public Session session = HibernateUtil.getSessionFactory().openSession();
+    
     public void cadastrarPessoa(Pessoa pessoa)
     {
         this.mensagem = "";
-        Conexao conexao = new Conexao();
+        
+        try {
+            session.beginTransaction();
+            session.save(pessoa);
+            session.getTransaction().commit();
+            session.flush();
+            this.mensagem = "Cadastro efetuado com sucesso";
+        } 
+        catch (Exception e) {
+            this.mensagem = "Erro de BD";
+        }
+        finally{
+            session.close();
+        }
+        
+        /*Conexao conexao = new Conexao();
         Connection con = conexao.conectar();
         if (!conexao.mensagem.equals(""))
         {
@@ -62,7 +79,7 @@ public class PessoaDAO
         finally
         {
             conexao.desconectar();
-        }
+        }*/
     }
 
     public Pessoa pesquisarPessoaPorId(Pessoa pessoa)
