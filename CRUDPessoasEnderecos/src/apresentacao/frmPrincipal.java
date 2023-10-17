@@ -30,7 +30,7 @@ public class frmPrincipal extends javax.swing.JDialog {
         jMenuBar1 = new javax.swing.JMenuBar();
         mnuPessoasEnd = new javax.swing.JMenu();
         mniCadastrar = new javax.swing.JMenuItem();
-        mniPesquisar = new javax.swing.JMenuItem();
+        mniPEE = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -44,13 +44,13 @@ public class frmPrincipal extends javax.swing.JDialog {
         });
         mnuPessoasEnd.add(mniCadastrar);
 
-        mniPesquisar.setText("Pesquisar");
-        mniPesquisar.addActionListener(new java.awt.event.ActionListener() {
+        mniPEE.setText("Pesquisar/Editar/Excluir");
+        mniPEE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mniPesquisarActionPerformed(evt);
+                mniPEEActionPerformed(evt);
             }
         });
-        mnuPessoasEnd.add(mniPesquisar);
+        mnuPessoasEnd.add(mniPEE);
 
         jMenuBar1.add(mnuPessoasEnd);
 
@@ -76,10 +76,10 @@ public class frmPrincipal extends javax.swing.JDialog {
         frmC.setVisible(true);
     }//GEN-LAST:event_mniCadastrarActionPerformed
 
-    private void mniPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniPesquisarActionPerformed
-        frmPesquisar frmPes = new frmPesquisar(null, true);
+    private void mniPEEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniPEEActionPerformed
+        frmPEE frmPes = new frmPEE(null, true);
         frmPes.setVisible(true);
-    }//GEN-LAST:event_mniPesquisarActionPerformed
+    }//GEN-LAST:event_mniPEEActionPerformed
 
     /**
      * @param args the command line arguments
@@ -130,7 +130,7 @@ public class frmPrincipal extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem mniCadastrar;
-    private javax.swing.JMenuItem mniPesquisar;
+    private javax.swing.JMenuItem mniPEE;
     private javax.swing.JMenu mnuPessoasEnd;
     // End of variables declaration//GEN-END:variables
 }

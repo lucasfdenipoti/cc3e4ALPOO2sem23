@@ -34,8 +34,7 @@ public class frmPEE extends javax.swing.JDialog
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         lblId = new javax.swing.JLabel();
         lblNome = new javax.swing.JLabel();
@@ -48,7 +47,6 @@ public class frmPEE extends javax.swing.JDialog
         btnPesquisar = new javax.swing.JButton();
         txfId = new javax.swing.JTextField();
         btnEditar = new javax.swing.JButton();
-        btnPesquisarPessoa = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Pesquisar/Editar/Excluir");
@@ -62,38 +60,23 @@ public class frmPEE extends javax.swing.JDialog
         lblCPF.setText("CPF");
 
         btnExcluir.setText("Excluir");
-        btnExcluir.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExcluirActionPerformed(evt);
             }
         });
 
         btnPesquisar.setText("Pesquisar");
-        btnPesquisar.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPesquisarActionPerformed(evt);
             }
         });
 
         btnEditar.setText("Editar");
-        btnEditar.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditarActionPerformed(evt);
-            }
-        });
-
-        btnPesquisarPessoa.setText("Pesquisar");
-        btnPesquisarPessoa.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                btnPesquisarPessoaActionPerformed(evt);
             }
         });
 
@@ -122,14 +105,8 @@ public class frmPEE extends javax.swing.JDialog
                                 .addComponent(txfRG, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txfNome, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(0, 0, 0)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(txfCPF)
-                                        .addComponent(lblCPF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnPesquisarPessoa))))))
+                                .addComponent(txfCPF)
+                                .addComponent(lblCPF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -143,9 +120,7 @@ public class frmPEE extends javax.swing.JDialog
                 .addGap(18, 18, 18)
                 .addComponent(lblNome)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPesquisarPessoa))
+                .addComponent(txfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblRG)
@@ -158,7 +133,7 @@ public class frmPEE extends javax.swing.JDialog
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnExcluir)
                     .addComponent(btnEditar))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         pack();
@@ -206,30 +181,6 @@ public class frmPEE extends javax.swing.JDialog
             JOptionPane.showMessageDialog(null, controle.mensagem);
         }
     }//GEN-LAST:event_btnPesquisarActionPerformed
-
-    private void btnPesquisarPessoaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnPesquisarPessoaActionPerformed
-    {//GEN-HEADEREND:event_btnPesquisarPessoaActionPerformed
-        Controle controle = new Controle();
-        List<Pessoa> listaPessoas = controle.pesquisarPessoaPorNome(txfNome.getText());
-        if(listaPessoas.isEmpty())
-            JOptionPane.showMessageDialog(null, "Não existe pessoa com esse nome");
-        if(listaPessoas.size() == 1){
-            txfId.setText(String.valueOf(listaPessoas.get(0).idPessoa));
-            txfNome.setText(listaPessoas.get(0).nome);
-            txfRG.setText(listaPessoas.get(0).rg);
-            txfCPF.setText(listaPessoas.get(0).cpf);
-        }
-        if(listaPessoas.size() > 1){
-            Estaticos.listaPessoas.clear();
-            Estaticos.listaPessoas = listaPessoas;
-            frmPesquisaNome frmPN = new frmPesquisaNome(null, true);
-            frmPN.setVisible(true);
-            txfId.setText(String.valueOf(Estaticos.pessoaResultado.idPessoa));
-            txfNome.setText(Estaticos.pessoaResultado.nome);
-            txfRG.setText(Estaticos.pessoaResultado.rg);
-            txfCPF.setText(Estaticos.pessoaResultado.cpf);
-        }
-    }//GEN-LAST:event_btnPesquisarPessoaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -293,7 +244,6 @@ public class frmPEE extends javax.swing.JDialog
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnPesquisar;
-    private javax.swing.JButton btnPesquisarPessoa;
     private javax.swing.JLabel lblCPF;
     private javax.swing.JLabel lblId;
     private javax.swing.JLabel lblNome;

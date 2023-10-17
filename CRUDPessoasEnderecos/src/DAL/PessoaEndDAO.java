@@ -68,33 +68,80 @@ public class PessoaEndDAO {
                 pessoa.setNome(resultset.getString("nome"));
                 pessoa.setRg(resultset.getString("rg"));
                 pessoa.setCpf(resultset.getString("cpf"));
-                
+
                 Endereco endRes = new Endereco();
                 Endereco endCom = new Endereco();
                 endRes.setLogradouro(resultset.getString("Logradouro"));
                 endRes.setNumero(resultset.getString("Numero"));
                 endRes.setBairro(resultset.getString("Bairro"));
                 endRes.setCidade(resultset.getString("Cidade"));
-                if(resultset.next()){
+                if (resultset.next()) {
                     endCom.setLogradouro(resultset.getString("Logradouro"));
                     endCom.setNumero(resultset.getString("Numero"));
                     endCom.setBairro(resultset.getString("Bairro"));
                     endCom.setCidade(resultset.getString("Cidade"));
                 }
                 List<Endereco> ListaDadosEnderecos = new ArrayList<>();
-                if(endRes != null)
+                if (endRes != null) {
                     ListaDadosEnderecos.add(endRes);
-                if(endCom != null)
+                }
+                if (endCom != null) {
                     ListaDadosEnderecos.add(endCom);
+                }
                 pessoa.setEnderecoList(ListaDadosEnderecos);
             }
-            else
+            else {
                 this.mensagem = "Não existe esse ID";
+            }
             conexao.desconectar();
         }
         catch (SQLException e) {
             this.mensagem = "Erro de leitura no BD";
         }
         return pessoa;
+    }
+
+    public void editarPessoa(Pessoa pessoa) {
+        this.mensagem = "";
+        Conexao conexao = new Conexao();
+        Connection con = conexao.conectar();
+        try {
+            String comSql = "update pessoas "
+                    + "set nome = ?,"
+                    + "rg = ?,"
+                    + "cpf = ? "
+                    + "where id = ?";
+            PreparedStatement stmt = con.prepareStatement(comSql);
+            stmt.setString(1, pessoa.getNome());
+            stmt.setString(2, pessoa.getRg());
+            stmt.setString(3, pessoa.getCpf());
+            stmt.setInt(4, pessoa.getIdpessoa());
+            stmt.execute();
+
+            for (Endereco end : pessoa.getEnderecoList()) {
+                comSql = "update enderecos "
+                        + "set logradouro = ?, "
+                        + "numero = ?, "
+                        + "bairro = ?, "
+                        + "cidade = ? "
+                        + "where id = ?";
+                stmt = con.prepareStatement(comSql);
+                stmt.setString(1, end.getLogradouro());
+                stmt.setString(2, end.getNumero());
+                stmt.setString(3, end.getBairro());
+                stmt.setString(4, end.getCidade());
+                stmt.setInt(5, end.getIdEndereco());
+                stmt.execute();
+            }
+
+            conexao.desconectar();
+            this.mensagem = "Pessoa editada com sucesso!";
+        }
+        catch (SQLException e) {
+            this.mensagem = "Erro de gravação no BD";
+        }
+        finally {
+            conexao.desconectar();
+        }
     }
 }
