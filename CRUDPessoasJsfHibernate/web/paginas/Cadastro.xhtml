@@ -11,13 +11,13 @@
     <h:form>
         <h:panelGrid columns="2" >
             Nome
-            <h:inputText id="inpNome" value=""></h:inputText>
+            <h:inputText id="inpNome" value="#{bgrCadastro.nome}"></h:inputText>
             RG
-            <h:inputText id="inpRG" value=""></h:inputText>
+            <h:inputText id="inpRG" value="#{bgrCadastro.RG}"></h:inputText>
             CPF
-            <h:inputText id="inpCPF" value=""></h:inputText>
+            <h:inputText id="inpCPF" value="#{bgrCadastro.CPF}"></h:inputText>
             <h:inputHidden></h:inputHidden>
-            <h:commandButton id="btnCadastrar" value="Cadastrar"></h:commandButton>
+            <h:commandButton id="btnCadastrar" value="Cadastrar" action="#{bgrCadastro.Cadastrar()}"></h:commandButton>
         </h:panelGrid>
     </h:form>
 </html>
