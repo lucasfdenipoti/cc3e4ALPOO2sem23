@@ -1,6 +1,7 @@
 package DAL;
 
 import modelo.Smartphone;
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 /**
@@ -33,6 +34,25 @@ public class SmartphoneDAO {
         catch (Exception e)
         {
             this.mensagem = "Erro de BD";
+        }
+    }
+    
+    public void Pesquisar(Smartphone smartphone){
+        this.mensagem = "";
+        try {
+            Query query = session.createQuery("from modelo.Smartphone l where l.idsmartphone = :id");
+            query.setParameter("id", smartphone.getIdsmartphone());
+            if(query.list().size() > 0){
+                smartphone = (modelo.Smartphone) query.list().get(0);
+            }
+            else
+                this.mensagem = "Registro não Encontrado";
+        } 
+        catch (Exception e) {
+            this.mensagem = "Erro de Banco de Dados";
+        }
+        finally {
+            session.close();
         }
     }
 }
