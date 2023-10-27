@@ -4,6 +4,7 @@ import java.util.List;
 
 public class Validacao {
     public String mensagem;
+    public Integer id;
     
     public void Validar(List<String> listaDadosPessoa)
     {
@@ -16,5 +17,14 @@ public class Validacao {
             this.mensagem = "Sistema Operacional deve ter mais que 3 caracteres";
         if (listaDadosPessoa.get(0).length() < 3)
             this.mensagem = "Cor deve ter mais que 3 caracteres";
+    }
+    
+    public void validarId(String numId){
+        try{
+            this.id = Integer.valueOf(numId);
+        }
+        catch (NumberFormatException e){
+            this.mensagem = "Digite um ID válido";
+        }
     }
 }
