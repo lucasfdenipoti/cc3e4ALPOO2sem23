@@ -1,34 +1,32 @@
 package DAL;
 
-import modelo.Smartphone;
+import modelo.Produto;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
 /**
- CREATE TABLE crud_smartphone.smartphones (
-  idsmartphone INT NOT NULL AUTO_INCREMENT,
-  fabricante VARCHAR(45) NULL,
-  modelo VARCHAR(45) NULL,
-  sistemaOperacional VARCHAR(45) NULL,
-  cor VARCHAR(45) NULL,
-  PRIMARY KEY (idsmartphone));
- * @author Lucas Denipoti
- */
-public class SmartphoneDAO {
+CREATE TABLE `crud_produto`.`produtos` (
+  `idProduto` INT NOT NULL AUTO_INCREMENT,
+  `Titulo` VARCHAR(45) NULL,
+  `Peso` DOUBLE NULL,
+  `Valor` DOUBLE NULL,
+  PRIMARY KEY (`idProduto`));
+*/
+public class ProdutosDAO {
     public String mensagem;
     public Session session = Conexao.getSessionFactory().openSession();
     
-    public void Cadastrar(Smartphone smartphone)
+    public void Cadastrar(Produto produto)
     {
         this.mensagem = "";
         try
         {
             session.beginTransaction();
-            session.save(smartphone);
+            session.save(produto);
             session.getTransaction().commit();
             session.flush();
             session.close();
-            this.mensagem = "Smartphone cadastrado com sucesso";
+            this.mensagem = "Produto cadastrado com sucesso";
         }
         catch (Exception e)
         {
@@ -36,13 +34,13 @@ public class SmartphoneDAO {
         }
     }
     
-    public void Pesquisar(Smartphone smartphone){
+    public Produto Pesquisar(Produto produto){
         this.mensagem = "";
         try {
-            Query query = session.createQuery("from modelo.Smartphone l where l.idsmartphone = :id");
-            query.setParameter("id", smartphone.getIdsmartphone());
+            Query query = session.createQuery("from modelo.Produto l where l.idProduto = :id");
+            query.setParameter("id", produto.getIdProduto());
             if(query.list().size() > 0){
-                smartphone = (modelo.Smartphone) query.list().get(0);
+                produto = (modelo.Produto) query.list().get(0);
             }
             else
                 this.mensagem = "Registro não Encontrado";
@@ -53,5 +51,6 @@ public class SmartphoneDAO {
         finally {
             session.close();
         }
+        return produto;
     }
 }
